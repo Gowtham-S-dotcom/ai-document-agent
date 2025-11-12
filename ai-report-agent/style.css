@@ -1,0 +1,219 @@
+/* Load Tailwind CSS (Basic Utilities) */
+@import url("https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css");
+
+/* --- CSS Variables for Theme Switching --- */
+:root {
+    /* Light Mode Defaults */
+    --color-bg-primary: #f0f4f8;
+    --color-bg-card: #ffffff;
+    --color-bg-input: #f9fafb;
+    --color-text-default: #1f2937;
+    --color-text-secondary: #4b5563;
+    --color-border-light: #e5e7eb;
+    --color-shadow-base: rgba(17, 24, 39, 0.12);
+}
+
+.dark {
+    /* Dark Mode Overrides */
+    --color-bg-primary: #111827;
+    --color-bg-card: #1f2937;
+    --color-bg-input: #374151;
+    --color-text-default: #f3f4f6;
+    --color-text-secondary: #d1d5db;
+    --color-border-light: #374151;
+    --color-shadow-base: rgba(0, 0, 0, 0.4);
+}
+
+/* --- Global & Font Styles --- */
+.font-display {
+    font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.font-body {
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-default);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.dark .text-gray-700 { color: var(--color-text-default); }
+.dark .text-gray-500 { color: var(--color-text-secondary); }
+
+/* --- Page Container & Animation --- */
+.page-container {
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+.page-container.hidden {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    display: none; /* Make sure it's fully hidden */
+}
+#loading-page.hidden {
+    opacity: 0;
+    transform: scale(0.98);
+    pointer-events: none;
+    display: none;
+}
+
+
+/* --- Card Styling: Elevated and Professional --- */
+.card {
+    background-color: var(--color-bg-card);
+    border-color: var(--color-border-light);
+    box-shadow: 0 8px 24px var(--color-shadow-base);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.card:hover {
+    box-shadow: 0 16px 36px var(--color-shadow-base);
+}
+
+/* Input/Textarea Fixes for Dark Mode */
+textarea {
+    background-color: var(--color-bg-input) !important;
+    border-color: var(--color-border-light) !important;
+    color: var(--color-text-default) !important;
+}
+
+/* --- File Drop Area: Distinct and Inviting --- */
+.file-drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: 2px dashed #3498db; 
+    border-radius: 0.75rem;
+    background-color: #e0f2fe; /* Remains light for contrast */
+    transition: background-color 0.2s;
+}
+.file-drop-area:hover {
+    background-color: #c7e5ff;
+}
+.dark .file-drop-area {
+    background-color: #1f2937; /* Darker for dark mode */
+}
+.dark .file-drop-area:hover {
+    background-color: #2b3a4e;
+}
+
+
+/* --- Generate Button: Gradient and Elevated --- */
+.generate-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.5rem; 
+    font-size: 1rem;
+    font-weight: 700; 
+    border-radius: 0.5rem;
+    color: white;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.5);
+    border: none;
+}
+
+.generate-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.7);
+    transform: translateY(-1px);
+}
+
+.generate-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+/* --- Report Output Styling --- */
+#results-area {
+    min-height: 10rem; 
+    /* *** BUG FIX: Explicitly set background and text color using CSS variables *** */
+    background-color: var(--color-bg-input) !important; 
+    border-color: var(--color-border-light) !important;
+    color: var(--color-text-default); /* Ensure text color is also set */
+}
+
+.markdown-output h2 {
+    font-size: 1.6rem; 
+    font-weight: 700;
+    color: #1d4ed8; 
+    border-bottom: 3px solid #bfdbfe; 
+    padding-bottom: 0.6rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dark .markdown-output h2 {
+    color: #60a5fa; /* Lighter blue for dark mode headings */
+    border-bottom-color: #4b5563; 
+}
+
+.markdown-output p {
+    margin-bottom: 1.2rem; 
+    line-height: 1.7; 
+    /* *** BUG FIX: Ensure text inherits the container's color *** */
+    color: inherit;
+}
+
+.markdown-output ul, .markdown-output ol {
+    margin-left: 1.8rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+    line-height: 1.6;
+    /* *** BUG FIX: Ensure text inherits the container's color *** */
+    color: inherit;
+}
+
+/* --- NEW: Keyword Tag Styling --- */
+.keyword-tag {
+    background-color: #e0e7ff; /* Light indigo background */
+    color: #3730a3; /* Dark indigo text */
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    display: inline-block;
+}
+
+.dark .keyword-tag {
+    background-color: #3730a3; /* Dark indigo background */
+    color: #e0e7ff; /* Light indigo text */
+}
+
+.keyword-placeholder {
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+/* --- NEW: Follow-up Button Styling --- */
+.followup-btn {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-default);
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-light);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+.followup-btn:hover {
+    background-color: var(--color-border-light);
+    color: #2563eb; /* Blue text on hover */
+    border-color: #93c5fd;
+}
+.dark .followup-btn {
+    color: var(--color-text-default);
+}
+.dark .followup-btn:hover {
+    background-color: #374151; /* Darker gray on hover */
+    color: #60a5fa; /* Lighter blue text */
+    border-color: #4b5563;
+}
