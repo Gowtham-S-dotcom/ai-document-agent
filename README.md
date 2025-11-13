@@ -81,7 +81,7 @@ You must have Node.js and npm installed on your machine to run the live-server.
 2. Clone the Repository
 
 git clone (https://github.com/Gowtham-S-dotcom/ai-document-agent))
-cd ai-knowledge-analyst
+cd <folder_name>
 
 
 3. Install live-server
